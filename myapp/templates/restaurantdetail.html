@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for Dish in Dishlist %}
+<h1>Dish Name : {{Dish.dish_name}}</h1>
+<h2>Dish Price : {{Dish.dish_price}}$</h2>
+<img src="{{Dish.dish_image.url}}" height="150px" width="150px">
+{% endfor %}
+{% endblock %}

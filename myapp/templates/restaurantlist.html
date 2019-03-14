@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="list-group">
+    {% for restaurant in restaurants %}
+    <div style="border: 2px solid black;">   
+    <label>Restaurant  Name :   <a href="{% url 'restrodetail' restaurant.id %}" class="list-group-item">{{restaurant.name}}</a></label>
+        <img src="{{restaurant.image.url}}" height="150px" width="150px">
+     <label>Restaurant Location :  <a class="list-group-item">{{restaurant.location}}</a>  </label>
+    </div>
+        {% endfor %}
+  </div>
+
+  {{restaurants.paginator.page_range}}
+  <center>
+   <div>
+   <span>
+       {% if restaurants.has_previous %}
+           <a href="?page=1">&laquo; first</a>
+           <a href="?page={{ restaurants.previous_page_number }}">previous</a>
+       {% endif %}
+
+       <span>
+           <strong>Page {{ restaurants.number }} of {{ restaurants.paginator.num_pages }}.</strong>
+       </span>
+
+       {% if restaurants.has_next %}
+           <a href="?page={{ restaurants.next_page_number }}">next</a>
+           <a href="?page={{ restaurants.paginator.num_pages }}">last &raquo;</a>
+       {% endif %}
+   </span>
+</div></center>
+{% endblock %}
